@@ -2,20 +2,37 @@ import React from 'react'
 import { Card } from 'semantic-ui-react'
 
 class PokemonCard extends React.Component {
+
+  state = {
+    spriteToggle: true
+  }
+
+  getHP = pokemon => {
+    const hp = pokemon.stats.filter(stat => stat.name === 'hp')
+    return hp[0].value
+
+  }
+
+  handleChange = () => {
+
+  }
+
   render() {
+    const { pokemon } = this.props
+    const sprite = this.state.spriteToggle ? pokemon.sprites.front : pokemon.sprites.back
     return (
       <Card>
         <div>
-          <div className="image">
-            <img alt="oh no!" />
+          <div className="image" onMouseOver={() => this.setState({ spriteToggle: false })} onMouseOut={() => this.setState({ spriteToggle: true })}>
+            <img src={sprite}/>
           </div>
           <div className="content">
-            <div className="header">POKEMON NAME HERE</div>
+            <div className="header">{pokemon.name}</div>
           </div>
           <div className="extra content">
             <span>
               <i className="icon heartbeat red" />
-              POKEMON HP HERE hp
+              {this.getHP(pokemon)}
             </span>
           </div>
         </div>
