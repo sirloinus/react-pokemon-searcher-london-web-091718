@@ -13,10 +13,6 @@ class PokemonCard extends React.Component {
 
   }
 
-  handleChange = () => {
-
-  }
-
   render() {
     const { pokemon } = this.props
     const sprite = this.state.spriteToggle ? pokemon.sprites.front : pokemon.sprites.back
